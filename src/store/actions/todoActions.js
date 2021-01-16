@@ -87,6 +87,10 @@ export const todoActions = {
       dispatch(requestActions.setSuccess(false))
       dispatch(requestActions.setLoading(true))
 
+      if (data.edited) {
+        dispatch(todoActions.setEdited(id, true))
+      }
+
       const body = new FormData()
 
       Object.entries(data).forEach(([key, value]) => body.append(key, value))
@@ -123,6 +127,7 @@ export const todoActions = {
       } else {
         if (res.message) {
           dispatch(requestActions.setError(res.message))
+          useMessage(getResponseMessage('Ошибка обновления задачи.'))
         } else {
           throw new Error('Ошибка при обновлении задачи.')
         }
@@ -150,5 +155,12 @@ export const todoActions = {
     try {
       dispatch(todoActions.getTodos())
     } catch (e) {}
+  },
+
+  setEdited(id, bool) {
+    return {
+      type: types.SET_EDITED,
+      payload: { id, edited: bool },
+    }
   },
 }

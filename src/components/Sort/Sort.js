@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { todoActions } from '../../store/actions/todoActions'
 import styles from './Sort.module.scss'
 
 export const Sort = () => {
+  const { sort_field, sort_direction } = useSelector(state => state.todo.sort)
   const select = useRef(null)
   const dispatch = useDispatch()
-  const [direction, setDirection] = useState(true)
-  const [param, setParam] = useState('id')
+  const [direction, setDirection] = useState(
+    sort_direction === 'asc' ? true : false
+  )
+  const [param, setParam] = useState(sort_field)
 
   useEffect(() => {
     let instance = null

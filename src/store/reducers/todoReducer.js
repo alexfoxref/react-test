@@ -18,6 +18,15 @@ export const todoReducer = (state = initialState.todo, action) => {
       return { ...state, page: action.payload }
     case types.SET_SORT:
       return { ...state, sort: action.payload }
+    case types.SET_EDITED:
+      const newData = state.data.map(todo => {
+        if (todo.id === action.payload.id) {
+          todo.edited = action.payload.edited
+        }
+
+        return todo
+      })
+      return { ...state, data: [...newData] }
     default:
       return state
   }

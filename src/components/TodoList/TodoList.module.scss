@@ -25,9 +25,10 @@
   &:nth-child(5) {
     width: 20%;
   }
-}
 
-span {
+  span {
+    display: block;
+  }
 }
 
 td {

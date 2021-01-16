@@ -25,9 +25,9 @@ const TodoList = () => {
 
   const statusTitle = useCallback(status => {
     return status.toString() === config.status.notExecuted.toString()
-      ? 'Не выполнена'
+      ? 'Не выполнено'
       : status.toString() === config.status.executed.toString()
-      ? 'Выполнена'
+      ? 'Выполнено'
       : ''
   }, [])
 
@@ -62,7 +62,7 @@ const TodoList = () => {
         </tr>
       </thead>
       <tbody>
-        {data.map(({ id, username, email, text, status }, idx) => (
+        {data.map(({ id, username, email, text, status, edited }, idx) => (
           <tr key={id} onClick={() => openTodoHandler(id)}>
             <td className={styles.td}>
               <span>{(page - 1) * config.todosPerPage + idx + 1}</span>
@@ -78,6 +78,7 @@ const TodoList = () => {
             </td>
             <td className={styles.td}>
               <span>{statusTitle(status)}</span>
+              {edited && <span>Отредактировано администратором</span>}
             </td>
           </tr>
         ))}

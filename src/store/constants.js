@@ -5,8 +5,10 @@ export const initialState = {
     url: null,
   },
   auth: {
-    isAuthorization:
-      JSON.parse(localStorage.getItem(config.userData) || '{}').token || false,
+    isAuthorization: JSON.parse(localStorage.getItem(config.userData) || '{}')
+      .token
+      ? true
+      : false,
   },
   todo: {
     data: [],
@@ -28,6 +30,7 @@ export const types = {
   SET_TODOS: 'TODO/SET_TODOS',
   SET_PAGE: 'TODO/SET_PAGE',
   SET_SORT: 'TODO/SET_SORT',
+  SET_EDITED: 'TODO/SET_EDITED',
   ADD_TODO: 'TODO/ADD_TODO',
   UPDATE_TODO: 'TODO/UPDATE_TODO',
   SET_LOADIN: 'REQUEST/SET_LOADIN',

@@ -9,6 +9,8 @@ import { todoActions } from '../store/actions/todoActions'
 export const TodoPage = ({ edit }) => {
   const { id } = useParams()
   const { data } = useSelector(state => state.todo)
+  const { isAuthorization } = useSelector(state => state.auth)
+  console.log(data)
   const todo = data.find(({ id: i }) => i.toString() === id.toString())
   const history = useHistory()
   const dispatch = useDispatch()
@@ -40,7 +42,7 @@ export const TodoPage = ({ edit }) => {
   }, [])
 
   useEffect(() => {
-    if (!todo) {
+    if (!todo || (edit && !isAuthorization)) {
       history.push('/')
       dispatch(locationActions.push('/'))
     } else {
@@ -49,7 +51,7 @@ export const TodoPage = ({ edit }) => {
         window.M.textareaAutoResize(textarea.current)
       }
     }
-  }, [])
+  }, [todo, edit, isAuthorization, dispatch, history])
 
   const booleanStatus = useMemo(() => {
     return status === config.status.notExecuted ? false : true
@@ -80,7 +82,7 @@ export const TodoPage = ({ edit }) => {
         const data = {
           text,
           status,
-          edited: true,
+          edited: text !== todo?.text,
         }
 
         dispatch(todoActions.updateTodo(id, data))
