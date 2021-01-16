@@ -1,0 +1,35 @@
+.td,
+.th {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:nth-child(1) {
+    width: 10%;
+  }
+
+  &:nth-child(2) {
+    width: 15%;
+  }
+
+  &:nth-child(3) {
+    width: 20%;
+  }
+
+  &:nth-child(4) {
+    width: 35%;
+  }
+
+  &:nth-child(5) {
+    width: 20%;
+  }
+}
+
+span {
+}
+
+td {
+  cursor: pointer;
+}

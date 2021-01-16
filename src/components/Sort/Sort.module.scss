@@ -1,0 +1,22 @@
+.sort {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+
+  h5 {
+    margin: 0.5rem;
+    margin-right: 2rem;
+  }
+
+  button {
+    margin-left: 2rem;
+  }
+}
+.select {
+  width: 50% !important;
+
+  &-wrapper {
+    padding: 0.5rem 1rem;
+  }
+}
